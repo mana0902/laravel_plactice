@@ -25,12 +25,12 @@ use App\Http\Controllers\Owner\Auth\VerifyEmailController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('owner.welcome');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    return view('owner.dashboard');
+})->middleware(['auth:owners', 'verified'])->name('dashboard');
 
 
 Route::middleware('auth')->group(function () {
@@ -64,7 +64,7 @@ Route::middleware('guest')->group(function () {
                 ->name('password.store');
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth:owners')->group(function () {
     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
                 ->name('verification.notice');
 
