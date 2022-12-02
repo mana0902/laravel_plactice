@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <section class="text-gray-600 body-font">
-
+                        <x-flash-message statu="info" />
                         <div class="lg:w-2/3 w-full mx-auto overflow-auto">
                         <div class="flex justify-end mb-4">
                             <button onclick="location.href='{{route('admin.owners.create')}}'" class=" ml-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">登録する</button>
