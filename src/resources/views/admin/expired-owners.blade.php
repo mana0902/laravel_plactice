@@ -21,32 +21,25 @@
                                 <th class="px-4 py-5 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">名前</th>
                                 <th class="px-4 py-5 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">メールアドレス</th>
                                 <th class="px-4 py-5 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">作成日</th>
-                                <th class="px-2 py-5 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
-                                <th class="px-2 py-5 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
+                                <th class="px-4 py-5 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach($owners as $owner)
+                                @foreach($expiredOwners as $owner)
                             <tr>
                                 <td class="px-4 py-3">{{$owner->name}}</td>
                                 <td class="px-4 py-3">{{$owner->email}}</td>
                                 <td class="px-4 py-3">{{$owner->created_at->diffForHumans()}}</td>
-                                <td class="px-4 py-3">
-                                <button type="submit" onclick="location.href='{{ route('admin.owners.edit',['owner'=>$owner->id])}}'" class=" text-white bg-blue-500 border-0 py-1.5 px-4 focus:outline-none hover:bg-indigo-600 rounded ">編集</button>
-                                </td>
-
-                                <form id="delete_{{$owner->id}}" method="post" action="{{ route('admin.owners.destroy', ['owner' => $owner->id ])}}">
+                                <form id="delete_{{$owner->id}}" method="post" action="{{ route('admin.expired-owners.destroy', ['owner' => $owner->id ])}}">
                                     @csrf
-                                    @method('delete')
-                                <td class="px-4 py-3 ">
-                                    <a href="#" data-id="{{$owner->id}}" onclick="deletePost(this)" class="text-center inline-block text-white bg-red-500 border-0 py-1.5 px-4 focus:outline-none hover:bg-red-600 rounded ">削除</a>
+                                <td class="px-4 py-3 text-center">
+                                    <a href="#" data-id="{{$owner->id}}" onclick="deletePost(this)" class=" text-white bg-red-500 border-0 py-1.5 px-4 focus:outline-none hover:bg-red-600 rounded ">完全に削除</a>
                                 </form>
                                 </td>
                             </tr>
                             @endforeach
                             </tbody>
                         </table>
-                        {{$owners->links();}}
                         </div>
                     </section>
                 </div>
