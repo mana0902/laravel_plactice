@@ -18,9 +18,9 @@
             @if(auth('admin')->user())
                 @include('layouts.admin-navigation')
             @elseif(auth('owners')->user())
-                @include('layout.owner-navigation')
+                @include('layouts.owner-navigation')
             @elseis(auth('users')->user())
-                @include('layout.user-navigation')
+                @include('layouts.user-navigation')
             @endif
             <!-- Page Heading -->
             @if (isset($header))
